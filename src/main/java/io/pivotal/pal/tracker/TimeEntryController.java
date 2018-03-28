@@ -1,6 +1,9 @@
 package io.pivotal.pal.tracker;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +15,12 @@ import java.util.List;
 public class TimeEntryController {
 
     @Autowired
-    private  TimeEntryRepository timeEntryRepository;
+    @Qualifier("timeEntryRepository")
+    private TimeEntryRepository timeEntryRepository;
+
+//    @Autowired
+//    @Qualifier("objectMapper")
+//    private ObjectMapper objectMapper;
 
     public TimeEntryController(TimeEntryRepository timeEntryRepository) {
         this.timeEntryRepository = timeEntryRepository;
@@ -29,20 +37,21 @@ public class TimeEntryController {
     public ResponseEntity<TimeEntry> read(@PathVariable long id) {
 
         TimeEntry entry = this.timeEntryRepository.find(id);
-        HttpStatus status = entry==null?HttpStatus.NOT_FOUND:HttpStatus.OK;
+        HttpStatus status = entry == null ? HttpStatus.NOT_FOUND : HttpStatus.OK;
         return new ResponseEntity(entry, status);
 
     }
 
     @GetMapping
-    public ResponseEntity<List<TimeEntry>>  list() {
-        return new ResponseEntity(this.timeEntryRepository.list() , HttpStatus.OK)  ;
+    public ResponseEntity<List<TimeEntry>> list() {
+        return new ResponseEntity(this.timeEntryRepository.list(), HttpStatus.OK);
+
     }
 
     @PutMapping("{id}")
     public ResponseEntity update(@PathVariable long id, @RequestBody TimeEntry expected) {
         TimeEntry entry = this.timeEntryRepository.update(id, expected);
-        HttpStatus status = entry==null?HttpStatus.NOT_FOUND:HttpStatus.OK;
+        HttpStatus status = entry == null ? HttpStatus.NOT_FOUND : HttpStatus.OK;
         return new ResponseEntity(entry, status);
     }
 

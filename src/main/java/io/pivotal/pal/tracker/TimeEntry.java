@@ -19,14 +19,29 @@ public class TimeEntry implements Comparable<TimeEntry>{
     }
 
     private long projectId;
+
+    public void setProjectId(long projectId) {
+        this.projectId = projectId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public void setHours(int hours) {
+        this.hours = hours;
+    }
+
     private long userId;
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    @JsonDeserialize(using = LocalDateDeserializer.class)
-    @JsonSerialize(using = LocalDateSerializer.class)
+//    @JsonFormat(pattern = "yyyy-MM-dd")
+//    @JsonDeserialize(using = LocalDateDeserializer.class)
+//    @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate date;
     private int hours;
-
-    private static long uniqueKey = 0l;
 
     public TimeEntry(long id, long projectId, long userId, LocalDate date, int hours) {
 
@@ -41,11 +56,6 @@ public class TimeEntry implements Comparable<TimeEntry>{
 
 
         this(1L, projectId, userId, date, hours);
-    }
-
-    private static long updateKey() {
-        uniqueKey ++;
-        return uniqueKey;
     }
 
 
@@ -90,12 +100,11 @@ public class TimeEntry implements Comparable<TimeEntry>{
         return hours;
     }
 
-    public static long getUniqueKey() {
-        return uniqueKey;
-    }
 
     @Override
     public int compareTo(TimeEntry o) {
         return 0;
     }
+
+
 }
