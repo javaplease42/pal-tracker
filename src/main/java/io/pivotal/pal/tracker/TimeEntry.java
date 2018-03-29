@@ -1,13 +1,6 @@
 package io.pivotal.pal.tracker;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
-
 import java.time.LocalDate;
-import java.util.Calendar;
 import java.util.Objects;
 
 public class TimeEntry implements Comparable<TimeEntry>{
@@ -105,6 +98,5 @@ public class TimeEntry implements Comparable<TimeEntry>{
     public int compareTo(TimeEntry o) {
         return 0;
     }
-
 
 }
