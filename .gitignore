@@ -1,11 +1,6 @@
 build
 .gradle
 .idea
+*.class
 *.iml
 ci/variables.yml
-
-
-
-./gradlew cloudNativeDeveloperMvc -PserverUrl=http://src-tc-pal-tracker.apps.longs.pal.pivotal.io/
-
-
