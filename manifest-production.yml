@@ -5,5 +5,5 @@ applications:
   host: em-pal-tracker
   services:
   - tracker-database
-
-
+  env:
+    SECURITY_FORCE_HTTPS: true
